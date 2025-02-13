@@ -3,86 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OptimChrome</title>
-    <link rel="manifest" href="manifest.json">
+    <title>MC Rankings</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background-color: #f8f9fa;
             margin: 0;
-            overflow: hidden;
-        }
-
-        .loader {
-            border: 6px solid #f3f3f3;
-            border-top: 6px solid #6ab7ff;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            position: absolute;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .container {
+            padding: 0;
             text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
             background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            border: 5px solid #6ab7ff;
-            max-width: 400px;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
-
-        h1 {
-            color: #333;
-            font-size: 22px;
-        }
-
-        #boostBtn {
-            background-color: #6ab7ff;
+        .navbar {
+            background: #007bff;
+            padding: 10px;
             color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s;
+            font-size: 20px;
+            border-radius: 10px 10px 0 0;
         }
-
-        #boostBtn:hover {
-            background-color: #519dde;
+        .search-bar {
+            margin: 15px 0;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f2f2f2;
         }
     </style>
 </head>
 <body>
-    <div class="loader"></div>
-
-    <div class="container" id="content">
-        <h1>Welcome to <b>OptimChrome</b>, the App That Speeds Up Chrome</h1>
-        <button id="boostBtn">Boost Performance</button>
+    <div class="container">
+        <div class="navbar">MC Rankings</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search player...">
+        </div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Player</th>
+                <th>Score</th>
+                <th>Tier</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Steve</td>
+                <td>1500</td>
+                <td>Diamond</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Alex</td>
+                <td>1450</td>
+                <td>Gold</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Notch</td>
+                <td>1400</td>
+                <td>Platinum</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Herobrine</td>
+                <td>1350</td>
+                <td>Emerald</td>
+            </tr>
+        </table>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            setTimeout(function () {
-                document.querySelector(".loader").style.display = "none";
-                let content = document.getElementById("content");
-                content.style.opacity = "1";
-                content.style.transform = "scale(1)";
-            }, 3000);
-        });
-    </script>
 </body>
 </html>

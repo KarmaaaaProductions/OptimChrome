@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OptimChrome</title>
     <link rel="manifest" href="manifest.json">
-    <script src="app.js"></script>
-    
+    <script src="app.js" defer></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,34 +16,16 @@
             height: 100vh;
             margin: 0;
             overflow: hidden;
-        }
-
-        .loader {
-            border: 6px solid #f3f3f3;
-            border-top: 6px solid #6ab7ff;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            position: absolute;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            text-align: center;
         }
 
         .container {
-            text-align: center;
             background: white;
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             border: 5px solid #6ab7ff;
             max-width: 400px;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
 
         h1 {
@@ -52,7 +33,11 @@
             font-size: 22px;
         }
 
-        #boostBtn {
+        .button-group {
+            margin-top: 20px;
+        }
+
+        button {
             background-color: #6ab7ff;
             color: white;
             border: none;
@@ -60,31 +45,30 @@
             font-size: 16px;
             border-radius: 10px;
             cursor: pointer;
+            margin: 5px;
             transition: 0.3s;
         }
 
-        #boostBtn:hover {
+        button:hover {
             background-color: #519dde;
+        }
+
+        #unboostBtn {
+            background-color: #ff6b6b;
+        }
+
+        #unboostBtn:hover {
+            background-color: #e55a5a;
         }
     </style>
 </head>
 <body>
-    <div class="loader"></div>
-
-    <div class="container" id="content">
+    <div class="container">
         <h1>Welcome to <b>OptimChrome</b>, the App That Speeds Up Chrome</h1>
-        <button id="boostBtn">Boost Performance</button>
+        <div class="button-group">
+            <button id="boostBtn">Boost Performance</button>
+            <button id="unboostBtn">Unboost Performance</button>
+        </div>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            setTimeout(function () {
-                document.querySelector(".loader").style.display = "none";
-                let content = document.getElementById("content");
-                content.style.opacity = "1";
-                content.style.transform = "scale(1)";
-            }, 3000); // 3-second delay
-        });
-    </script>
 </body>
 </html>

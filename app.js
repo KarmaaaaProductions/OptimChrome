@@ -5,6 +5,24 @@ document.addEventListener("DOMContentLoaded", function () {
     boostBtn.addEventListener("click", function () {
         alert("🚀 Boosting Chrome Performance...");
 
+        // 🔄 Step 1: Reset GPU Rendering
+        document.body.style.willChange = 'auto';
+        document.body.style.transform = 'none';
+
+        // 🔄 Step 2: Restore Event Listeners
+        restoreEventListeners();
+
+        // 🔄 Step 3: Refresh Page to Restore Cache Usage
+        setTimeout(() => {
+            location.reload();
+        }, 1000);
+
+        alert("✅ Performance Boosted!");
+    });
+
+    unboostBtn.addEventListener("click", function () {
+        alert("Reverting Changes");
+
         // 🛠️ Step 1: Clear Cache to Free Up Memory
         if ('caches' in window) {
             caches.keys().then(names => {
@@ -23,25 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
         minimizeResourceHeavyElements();
 
         // 🏁 Done!
-        alert("✅ Performance Boosted!");
-    });
-
-    unboostBtn.addEventListener("click", function () {
-        alert("🔄 Reverting Changes...");
-
-        // 🔄 Step 1: Reset GPU Rendering
-        document.body.style.willChange = 'auto';
-        document.body.style.transform = 'none';
-
-        // 🔄 Step 2: Restore Event Listeners
-        restoreEventListeners();
-
-        // 🔄 Step 3: Refresh Page to Restore Cache Usage
-        setTimeout(() => {
-            location.reload();
-        }, 1000);
-
-        alert("🚫 Boost Reverted!");
+        alert("Task Complete.!");
     });
 
     function removeUnusedEventListeners() {
@@ -62,3 +62,4 @@ document.addEventListener("DOMContentLoaded", function () {
         // Add code to restore specific event listeners if necessary.
     }
 });
+

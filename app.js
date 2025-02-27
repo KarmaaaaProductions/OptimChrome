@@ -12,16 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
         // 🔄 Step 2: Restore Event Listeners
         restoreEventListeners();
 
-        // 🔄 Step 3: Refresh Page to Restore Cache Usage
-        setTimeout(() => {
-            location.reload();
-        }, 1000);
+        // 🔄 Step 3: Display Alert for Closing Inactive Tabs
+        alert("Close inactive tabs for best performance!");
 
         alert("✅ Performance Boosted!");
     });
 
     unboostBtn.addEventListener("click", function () {
-        alert("Reverting Changes");
+        alert("🔄 Reverting Changes...");
 
         // 🛠️ Step 1: Clear Cache to Free Up Memory
         if ('caches' in window) {
@@ -40,8 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // 🛠️ Step 4: Minimize Resource-Heavy Elements
         minimizeResourceHeavyElements();
 
-        // 🏁 Done!
-        alert("Task Complete.!");
+        alert("✅ Performance Reverted!");
     });
 
     function removeUnusedEventListeners() {
@@ -62,4 +59,3 @@ document.addEventListener("DOMContentLoaded", function () {
         // Add code to restore specific event listeners if necessary.
     }
 });
-

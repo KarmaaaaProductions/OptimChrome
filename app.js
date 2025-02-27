@@ -12,20 +12,15 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
 
-        // 🛠️ Step 2: Discard Inactive Tabs (Free RAM)
-        if (chrome && chrome.tabs) {
-            chrome.tabs.query({}, (tabs) => {
-                tabs.forEach(tab => {
-                    if (!tab.active) {
-                        chrome.tabs.discard(tab.id);
-                    }
-                });
-            });
-        }
-
-        // 🛠️ Step 3: Apply GPU Rendering Optimization
+        // 🛠️ Step 2: Apply GPU Rendering Optimization
         document.body.style.willChange = 'transform, opacity';
         document.body.style.transform = 'translateZ(0)';
+
+        // 🛠️ Step 3: Remove Unnecessary Event Listeners
+        removeUnusedEventListeners();
+
+        // 🛠️ Step 4: Minimize Resource-Heavy Elements
+        minimizeResourceHeavyElements();
 
         // 🏁 Done!
         alert("✅ Performance Boosted!");
@@ -38,11 +33,32 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.style.willChange = 'auto';
         document.body.style.transform = 'none';
 
-        // 🔄 Step 2: Refresh Page to Restore Cache Usage
+        // 🔄 Step 2: Restore Event Listeners
+        restoreEventListeners();
+
+        // 🔄 Step 3: Refresh Page to Restore Cache Usage
         setTimeout(() => {
             location.reload();
         }, 1000);
 
         alert("🚫 Boost Reverted!");
     });
+
+    function removeUnusedEventListeners() {
+        // Remove event listeners that are no longer needed
+        // For demonstration purposes, this function is empty.
+        // Add code to remove specific event listeners if necessary.
+    }
+
+    function minimizeResourceHeavyElements() {
+        // Hide resource-heavy elements (e.g., videos, large images) to free up resources
+        const heavyElements = document.querySelectorAll(".resource-heavy");
+        heavyElements.forEach(el => el.style.display = 'none');
+    }
+
+    function restoreEventListeners() {
+        // Restore previously removed event listeners
+        // For demonstration purposes, this function is empty.
+        // Add code to restore specific event listeners if necessary.
+    }
 });

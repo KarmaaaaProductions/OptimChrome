@@ -4,22 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OptimChrome</title>
-    <link rel="manifest" href="manifest.json">
-    <script src="app.js" defer></script>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f8ff;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             overflow: hidden;
-            text-align: center;
         }
 
         .container {
+            text-align: center;
             background: white;
             padding: 30px;
             border-radius: 20px;
@@ -33,11 +32,7 @@
             font-size: 22px;
         }
 
-        .button-group {
-            margin-top: 20px;
-        }
-
-        button {
+        .button {
             background-color: #6ab7ff;
             color: white;
             border: none;
@@ -45,30 +40,100 @@
             font-size: 16px;
             border-radius: 10px;
             cursor: pointer;
-            margin: 5px;
             transition: 0.3s;
+            margin: 10px;
         }
 
-        button:hover {
+        .button:hover {
             background-color: #519dde;
         }
 
-        #unboostBtn {
-            background-color: #ff6b6b;
+        /* Demo Mode Graphics */
+        .laggy-grid {
+            display: flex;
+            flex-wrap: wrap;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 0, 0, 0.1);
         }
 
-        #unboostBtn:hover {
-            background-color: #e55a5a;
+        .laggy-box {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 0, 0, 0.3);
+            margin: 2px;
+            animation: lagEffect 0.1s infinite alternate;
+        }
+
+        @keyframes lagEffect {
+            from { transform: rotate(0deg) scale(1); }
+            to { transform: rotate(20deg) scale(1.2); }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome to <b>OptimChrome</b>, the App That Speeds Up Chrome</h1>
-        <div class="button-group">
-            <button id="boostBtn">Boost Performance</button>
-            <button id="unboostBtn">Unboost Performance</button>
-        </div>
+        <button class="button" id="demoBtn">Enable Demo Mode</button>
+        <button class="button" id="boostBtn">Boost Performance</button>
     </div>
+
+    <script>
+        let memoryHog = [];
+
+        document.getElementById("demoBtn").addEventListener("click", function () {
+            alert("⚠️ Enabling Demo Mode: Your device may lag!");
+
+            // Add heavy animations (Laggy Grid)
+            let laggyGrid = document.createElement("div");
+            laggyGrid.className = "laggy-grid";
+            document.body.appendChild(laggyGrid);
+
+            for (let i = 0; i < 500; i++) { // Creates 500 laggy elements
+                let box = document.createElement("div");
+                box.className = "laggy-box";
+                laggyGrid.appendChild(box);
+            }
+
+            // Fill memory with junk data
+            for (let i = 0; i < 1000000; i++) {
+                memoryHog.push(Math.random());
+            }
+        });
+
+        document.getElementById("boostBtn").addEventListener("click", function () {
+            alert("🚀 Boosting Chrome Performance...");
+
+            // Remove Laggy Graphics
+            let laggyGrid = document.querySelector(".laggy-grid");
+            if (laggyGrid) {
+                laggyGrid.remove();
+            }
+
+            // Clear Memory Hogging
+            memoryHog = [];
+            
+            // Clear Cache
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    names.forEach(name => caches.delete(name));
+                });
+            }
+
+            // Clear Cookies
+            document.cookie.split(";").forEach(function(cookie) {
+                document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/");
+            });
+
+            // GPU Optimization
+            document.body.style.willChange = 'transform, opacity';
+            document.body.style.transform = 'translateZ(0)';
+
+            alert("✅ Performance Boosted! Lag Removed.");
+        });
+    </script>
 </body>
 </html>
